@@ -15,7 +15,12 @@ function UiCardItemList(props: any) {
         <Col key={item.id}>
           <UiCardItem
             key={item.id}
+            id={item.id}
             title={item.title}
+            img={item.img}
+            navigateTo={item.navigateTo}
+            buttonDescription={item.button.description}
+            buttonAction={item.button.action}
             description={item.description}
           />
         </Col>
