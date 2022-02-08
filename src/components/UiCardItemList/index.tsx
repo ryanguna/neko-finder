@@ -3,8 +3,8 @@
  */
 import '@screens/app/style.scss';
 
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import UiCardItem from '@components/UiCardItem';
 
@@ -17,7 +17,7 @@ function UiCardItemList(props: any) {
             key={item.id}
             id={item.id}
             title={item.title}
-            img={item.img}
+            url={item.url}
             navigateTo={item.navigateTo}
             buttonDescription={item.button.description}
             buttonAction={item.button.action}
