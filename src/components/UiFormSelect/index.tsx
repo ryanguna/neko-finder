@@ -10,7 +10,7 @@ function UiFormSelect(props: any) {
 
   return (
     <Form.Select {...other} value={defaultValue} aria-label="Default select">
-      <option disabled={true}>{placeholder}</option>
+      <option value="">{placeholder}</option>
       {props.options.map((option: any, index: any) => (
         <option key={index} value={option.value}>
           {option.description}

@@ -1,19 +1,27 @@
-import ReactDOM from 'react-dom';
+/**
+ * Module Dependencies
+ */
 import '@/global.scss';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import App from '@screens/app';
+import AppBreedDetails from '@screens/app.breed-details';
 import AppHome from '@screens/app.home';
-import AppCatDetails from '@screens/app.cat-details';
+
+import { store } from '@store/store';
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App>
-      <Routes>
-        <Route path="/" element={<AppHome />} />
-        <Route path="/cats/:id" element={<AppCatDetails />} />
-      </Routes>
-    </App>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App>
+        <Routes>
+          <Route path="/" element={<AppHome />} />
+          <Route path="/breeds/:id" element={<AppBreedDetails />} />
+        </Routes>
+      </App>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root'),
 );
