@@ -11,8 +11,8 @@ import Container from 'react-bootstrap/Container';
 function App(props: ReactComponentWrapper) {
   return (
     <React.Fragment>
+      <AppHeader />
       <Container className="app-container" fluid={true}>
-        <AppHeader />
         {props.children}
       </Container>
     </React.Fragment>

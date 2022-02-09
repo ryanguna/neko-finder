@@ -22,7 +22,7 @@ function AppHeader() {
             eventKey={2}
             href="https://9gag.com/tag/cat"
           >
-            neko memes
+            #NekoMemes
           </Nav.Link>
         </Nav>
       </Container>
