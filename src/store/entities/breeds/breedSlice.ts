@@ -24,13 +24,19 @@ const breedSlice = createSlice({
     },
     getBreedsByIdSuccess: (state, action) => {
       state.isLoadingBreeds = false;
+      state.pagination.isPaginationButtonHidden = false;
+
+      if (state.pagination.currentPage === 1) {
+        state.pagination.currentPage++;
+      }
+
       state.data = _.get(action.payload, 'data', []);
     },
     getBreedsByIdFailed: (state) => {
       state.isLoadingBreeds = false;
     },
     getPaginatedBreedsById: (state, action) => {
-      ++state.pagination.currentPage;
+      state.pagination.currentPage++;
       state.pagination.isPaginationButtonLoading = true;
     },
     getPaginatedBreedsByIdSuccess: (state, action) => {
@@ -56,7 +62,7 @@ const breedSlice = createSlice({
     },
     resetPagination: (state) => {
       state.pagination.currentPage = 1;
-      state.pagination.isPaginationButtonHidden = false;
+      state.pagination.isPaginationButtonHidden = true;
       state.pagination.isPaginationButtonLoading = false;
     },
     clearBreeds: (state) => {

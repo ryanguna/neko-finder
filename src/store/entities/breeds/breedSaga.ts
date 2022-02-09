@@ -13,7 +13,7 @@ function* handleGetBreedsById(action: any) {
   try {
     // @ts-ignore
     const response = yield call(() =>
-      breedAPI.requestBreedsById(action.payload.id, action.payload.page),
+      breedAPI.requestBreedsById(action.payload.id, action.payload.currentPage),
     );
     yield put(getBreedsByIdSuccess(response));
   } catch (e) {
@@ -25,7 +25,7 @@ function* handleGetPaginatedBreedsById(action: any) {
   try {
     // @ts-ignore
     const response = yield call(() =>
-      breedAPI.requestBreedsById(action.payload.id, action.payload.page),
+      breedAPI.requestBreedsById(action.payload.id, action.payload.currentPage),
     );
 
     yield put(getPaginatedBreedsByIdSuccess(response));

@@ -11,6 +11,7 @@ import { clearBreeds, getBreedsById } from '@store/entities/breeds/breedSlice';
 
 import * as React from 'react';
 
+import LoadingBreedState from '@screens/app.home/sections/BreedList/LoadingBreedState';
 import NoBreedFoundState from '@screens/app.home/sections/BreedList/NoBreedFoundState';
 import breedSelector from '@store/entities/breeds/breedSelector';
 import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
@@ -31,6 +32,7 @@ function BreedList() {
   );
   const { currentPage } = useAppSelector(breedSelector.getBreedPagination);
   const breeds = useAppSelector(breedSelector.getBreeds);
+  const isLoading = useAppSelector(breedSelector.getFetchBreedsLoadingState);
 
   // On load and currentSelectedBreedType changes calculate display
   useEffect(() => {
@@ -46,7 +48,7 @@ function BreedList() {
     }
   }, [selectedBreedType]);
 
-  const goTo = (id: any) => (event: React.MouseEvent) => {
+  const goTo = (id: string) => (event: React.MouseEvent) => {
     event.preventDefault();
     navigate(`/breeds/${id}`);
   };
@@ -55,7 +57,9 @@ function BreedList() {
     <>
       <Container>
         <Row xs={1} sm={2} md={4} className="justify-content-md-center">
-          {breeds.length > 0 ? (
+          {isLoading ? (
+            <LoadingBreedState />
+          ) : breeds.length > 0 ? (
             breeds.map((breed: any) => (
               <Col key={breed.id}>
                 <Card className="breed-list-card">

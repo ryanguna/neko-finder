@@ -9,6 +9,7 @@ import { getBreedTypes } from '@store/entities/breedTypes/breedTypeSlice';
 
 import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
 
+import breedSelector from '@store/entities/breeds/breedSelector';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { useEffect } from 'react';
 
@@ -19,6 +20,10 @@ function BreedSelect() {
   const breedTypes = useAppSelector(breedTypeSelector.getBreedTypes);
   const selectedBreedType = useAppSelector(
     breedTypeSelector.getSelectedBreedType,
+  );
+
+  const isBreedLoading = useAppSelector(
+    breedSelector.getFetchBreedsLoadingState,
   );
 
   useEffect(() => {
@@ -43,8 +48,9 @@ function BreedSelect() {
   return (
     <div className="breed-select-padding">
       <UiFormSelect
-        label="Choose a breed"
+        label="Breeds"
         placeholder="Choose a breed"
+        disabled={isBreedLoading}
         options={breedTypes}
         defaultValue={selectedBreedType}
         onChange={handleBreedSelectionChange}
