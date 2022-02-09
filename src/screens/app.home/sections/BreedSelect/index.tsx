@@ -2,7 +2,7 @@
  * Module Dependencies
  */
 import UiFormSelect from '@components/UiFormSelect';
-import '@screens/app/style.scss';
+import '@screens/app.home/sections/BreedSelect/style.scss';
 import { useNavigate } from 'react-router-dom';
 
 import { getBreedTypes } from '@store/entities/breedTypes/breedTypeSlice';
@@ -41,12 +41,15 @@ function BreedSelect() {
   };
 
   return (
-    <UiFormSelect
-      placeholder="Default breed"
-      options={breedTypes}
-      defaultValue={selectedBreedType}
-      onChange={handleBreedSelectionChange}
-    />
+    <div className="breed-select-padding">
+      <UiFormSelect
+        label="Choose a breed"
+        placeholder="Choose a breed"
+        options={breedTypes}
+        defaultValue={selectedBreedType}
+        onChange={handleBreedSelectionChange}
+      />
+    </div>
   );
 }
 
