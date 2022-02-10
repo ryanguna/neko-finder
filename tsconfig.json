@@ -27,12 +27,13 @@
     "jsx": "react-jsx",
     "outDir": "dist",
     "typeRoots": [
-      "./src/@types",
+      "./src/types/global",
       "node_modules/@types"
     ]
   },
   "include": [
-    "src"
+    "src",
+    "src/types/global"
   ],
   "exclude": [
     "node_modules",
