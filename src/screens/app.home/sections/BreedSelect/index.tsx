@@ -11,8 +11,8 @@ import { getBreedTypes } from '@store/entities/breedTypes/breedTypeSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 
 // Selectors
-import breedSelector from '@store/entities/breeds/breedSelector';
-import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
+import { breedSelector } from '@store/entities/breeds/breedSelector';
+import { breedTypeSelector } from '@store/entities/breedTypes/breedTypeSelector';
 
 /**
  *

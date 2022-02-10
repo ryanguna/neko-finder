@@ -3,7 +3,7 @@
  */
 import { RootState } from '@store/store';
 
-export default {
+export const breedTypeSelector = {
   getBreedTypes: (state: RootState) => state.entities.breedTypes.data,
   getSelectedBreedType: (state: RootState) =>
     state.entities.breedTypes.selectedBreed,

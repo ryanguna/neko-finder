@@ -18,7 +18,7 @@ import { getBreedDetailById } from '@store/entities/breedDetail/breedDetailSlice
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 
 // Selectors
-import breedDetailSelector from '@store/entities/breedDetail/breedDetailSelector';
+import { breedDetailSelector } from '@store/entities/breedDetail/breedDetailSelector';
 
 /**
  *
@@ -37,7 +37,7 @@ function AppBreedDetails() {
 
   useEffect(() => {
     dispatch(getBreedDetailById({ id: pathParams.id }));
-  }, [dispatch]);
+  }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function goBack(): void {
     navigate(-1);

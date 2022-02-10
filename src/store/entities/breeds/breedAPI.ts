@@ -3,7 +3,7 @@
  */
 import axios from '@lib/axios';
 
-export default {
+export const breedAPI = {
   requestBreedsById: (breedId: string, page = 1, limit = 10) =>
     axios.request({
       method: 'GET',

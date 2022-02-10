@@ -35,7 +35,7 @@ function UiFormSelect(props: IUiFormSelect) {
         ''
       )}
 
-      <Form.Select id={props.id || ''} {...other} value={defaultValue}>
+      <Form.Select id={props.id || ''} {...other} value={defaultValue ?? ''}>
         <option value="">{placeholder}</option>
         {props.options.map((option: any, index: number) => (
           <option key={index} value={option.value}>
