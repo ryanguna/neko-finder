@@ -20,9 +20,7 @@ function AppHome() {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    dispatch(
-      setSelectedBreed({ selectedBreed: searchParams.get('breed') }),
-    );
+    dispatch(setSelectedBreed({ selectedBreed: searchParams.get('breed') }));
   }, [searchParams]);
 
   return (

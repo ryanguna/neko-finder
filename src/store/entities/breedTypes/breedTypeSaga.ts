@@ -10,6 +10,8 @@ import {
   getBreedTypesSuccess,
 } from '@store/entities/breedTypes/breedTypeSlice';
 
+import { showGlobalError } from '@store/global/globalSlice';
+
 function* handleGetBreedTypes() {
   try {
     // @ts-ignore
@@ -17,6 +19,7 @@ function* handleGetBreedTypes() {
     yield put(getBreedTypesSuccess(response.data));
   } catch (e) {
     yield put(getBreedTypesFailed());
+    yield put(showGlobalError());
   }
 }
 

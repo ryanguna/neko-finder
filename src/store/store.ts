@@ -3,6 +3,7 @@
  */
 import { configureStore } from '@reduxjs/toolkit';
 import entitiesReducer from '@store/entities/entitiesReducer';
+import globalSlice from '@store/global/globalSlice';
 
 import createSagaMiddleware from 'redux-saga';
 
@@ -13,6 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
     entities: entitiesReducer,
+    global: globalSlice,
   },
   middleware: [sagaMiddleware],
 });

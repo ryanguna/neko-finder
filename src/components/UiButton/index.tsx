@@ -11,7 +11,7 @@ interface IUiButton extends IReactComponentWrapper {
   description?: string;
   variant?: string;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: any;
 }
 
 function UiButton(props: IUiButton) {

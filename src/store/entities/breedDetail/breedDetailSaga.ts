@@ -8,6 +8,7 @@ import {
   getBreedDetailById,
   getBreedDetailByIdSuccess,
 } from '@store/entities/breedDetail/breedDetailSlice';
+import { showGlobalError } from '@store/global/globalSlice';
 import _ from 'lodash';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
@@ -38,6 +39,7 @@ function* handleGetBreedDetailById(action: IPayload) {
     yield put(getBreedDetailByIdSuccess(mappedData));
   } catch (e) {
     yield put(getBreedDetailByFailed());
+    yield put(showGlobalError());
   }
 }
 
