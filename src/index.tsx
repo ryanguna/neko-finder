@@ -9,9 +9,9 @@ import App from '@screens/app';
 import AppBreedDetails from '@screens/app.breed-details';
 import AppHome from '@screens/app.home';
 
+import PageNotFound from '@screens/navigation/PageNotFound';
 import { store } from '@store/store';
 import { Provider } from 'react-redux';
-import PageNotFound from "@screens/navigation/PageNotFound";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -20,7 +20,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<AppHome />} />
           <Route path="/breeds/:id" element={<AppBreedDetails />} />
-          <Route path="*" element={<PageNotFound />}/>
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </App>
     </BrowserRouter>
