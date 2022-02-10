@@ -11,7 +11,7 @@ import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
 
 import breedSelector from '@store/entities/breeds/breedSelector';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 function BreedSelect() {
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ function BreedSelect() {
   const selectedBreedType = useAppSelector(
     breedTypeSelector.getSelectedBreedType,
   );
-
   const isBreedLoading = useAppSelector(
     breedSelector.getFetchBreedsLoadingState,
   );
@@ -30,7 +29,9 @@ function BreedSelect() {
     dispatch(getBreedTypes());
   }, [dispatch]);
 
-  const handleBreedSelectionChange = (event: any) => {
+  function handleBreedSelectionChange(
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) {
     event.preventDefault();
 
     if (event.target.value === '') {
@@ -43,7 +44,7 @@ function BreedSelect() {
         search: `?breed=${event.target.value}`,
       });
     }
-  };
+  }
 
   return (
     <div className="breed-select-padding">

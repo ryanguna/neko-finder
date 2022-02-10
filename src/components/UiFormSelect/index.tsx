@@ -3,9 +3,26 @@
  */
 import '@screens/app/style.scss';
 
+import { IReactComponentWrapper } from '@/types/global';
 import Form from 'react-bootstrap/Form';
 
-function UiFormSelect(props: any) {
+interface IOption {
+  value: string;
+  description: string;
+}
+
+interface IUiFormSelect extends IReactComponentWrapper {
+  placeholder?: string;
+  defaultValue?: string;
+  label?: string;
+  id?: string;
+  options: IOption[];
+  disabled?: boolean;
+  onChange?: any;
+  'aria-label'?: string;
+}
+
+function UiFormSelect(props: IUiFormSelect) {
   const { placeholder, defaultValue, ...other } = props;
 
   return (
@@ -16,12 +33,7 @@ function UiFormSelect(props: any) {
         ''
       )}
 
-      <Form.Select
-        id={props.id || ''}
-        {...other}
-        value={defaultValue}
-        aria-label="Default select"
-      >
+      <Form.Select id={props.id || ''} {...other} value={defaultValue}>
         <option value="">{placeholder}</option>
         {props.options.map((option: any, index: any) => (
           <option key={index} value={option.value}>

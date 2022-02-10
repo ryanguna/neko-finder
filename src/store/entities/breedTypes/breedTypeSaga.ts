@@ -1,14 +1,14 @@
 /**
  * Module Dependencies
  */
+import { call, put, takeLatest } from 'redux-saga/effects';
+
+import breedTypeAPI from '@store/entities/breedTypes/breedTypeAPI';
 import {
   getBreedTypes,
   getBreedTypesFailed,
   getBreedTypesSuccess,
 } from '@store/entities/breedTypes/breedTypeSlice';
-import { call, put, takeLatest } from 'redux-saga/effects';
-
-import breedTypeAPI from '@store/entities/breedTypes/breedTypeAPI';
 
 function* handleGetBreedTypes() {
   try {

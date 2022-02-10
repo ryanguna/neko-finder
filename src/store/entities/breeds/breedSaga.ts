@@ -8,20 +8,30 @@ import {
   getPaginatedBreedsByIdSuccess,
 } from '@store/entities/breeds/breedSlice';
 import { call, put, takeLatest } from 'redux-saga/effects';
+import {ISagaActionParam} from "@/types/global";
 
-function* handleGetBreedsById(action: any) {
+
+interface IPayload extends ISagaActionParam {
+  payload: {
+    id: string;
+    currentPage: number
+  };
+}
+
+function* handleGetBreedsById(action: IPayload) {
   try {
     // @ts-ignore
     const response = yield call(() =>
       breedAPI.requestBreedsById(action.payload.id, action.payload.currentPage),
     );
+
     yield put(getBreedsByIdSuccess(response));
   } catch (e) {
     yield put(getBreedsByIdFailed());
   }
 }
 
-function* handleGetPaginatedBreedsById(action: any) {
+function* handleGetPaginatedBreedsById(action: IPayload) {
   try {
     // @ts-ignore
     const response = yield call(() =>

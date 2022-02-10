@@ -29,7 +29,9 @@ function AppCatDetails() {
     dispatch(getBreedDetailById({ id: pathParams.id }));
   }, [dispatch]);
 
-  const goBack = () => navigate(-1);
+  function goBack(): void {
+    navigate(-1);
+  }
 
   const listItems = [
     { name: 'Breed', value: breedDetail.name },
@@ -39,7 +41,7 @@ function AppCatDetails() {
   ];
 
   return (
-    <Container className="app-breed-container-margin">
+    <Container className="app-breed-detail-container">
       <Row className="justify-content-md-center">
         <Col sm={6} xs={12}>
           <Card>

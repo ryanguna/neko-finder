@@ -4,9 +4,9 @@
 import axios from '@lib/axios';
 
 export default {
-  requestBreedDetailsById: (breedId: string) =>
+  requestBreedDetailsById: (id: string) =>
     axios.request({
       method: 'GET',
-      url: `/images/${breedId}`,
+      url: `/images/${id}`,
     }),
 };

@@ -22,15 +22,16 @@ const breedSlice = createSlice({
     getBreedsById: (state, action) => {
       state.isLoadingBreeds = true;
     },
-    getBreedsByIdSuccess: (state, action) => {
+    getBreedsByIdSuccess: (state, { payload }) => {
       state.isLoadingBreeds = false;
       state.pagination.isPaginationButtonHidden = false;
 
+      // Increase pagination count
       if (state.pagination.currentPage === 1) {
         state.pagination.currentPage++;
       }
 
-      state.data = _.get(action.payload, 'data', []);
+      state.data = _.get(payload, 'data', []);
     },
     getBreedsByIdFailed: (state) => {
       state.isLoadingBreeds = false;
@@ -39,10 +40,12 @@ const breedSlice = createSlice({
       state.pagination.currentPage++;
       state.pagination.isPaginationButtonLoading = true;
     },
-    getPaginatedBreedsByIdSuccess: (state, action) => {
+    getPaginatedBreedsByIdSuccess: (state, { payload }) => {
+      const currentState = current(state);
+
       state.pagination.isPaginationButtonLoading = false;
-      const data: any = _.get(action.payload, 'data', []);
-      const headers = _.get(action.payload, 'headers', []);
+      const data: any = _.get(payload, 'data', []);
+      const headers = _.get(payload, 'headers', []);
 
       const paginationCount = _.get(headers, 'pagination-count');
 
@@ -50,9 +53,6 @@ const breedSlice = createSlice({
         state.pagination.isPaginationButtonHidden = true;
       }
 
-      const currentState = current(state);
-
-      // @ts-ignore
       state.data = _.values(
         _.merge(_.keyBy(currentState.data, 'id'), _.keyBy(data, 'id')),
       );

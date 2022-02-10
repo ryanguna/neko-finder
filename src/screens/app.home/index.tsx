@@ -21,16 +21,14 @@ function AppHome() {
 
   useEffect(() => {
     dispatch(
-      setSelectedBreed({ selectedBreed: searchParams.get('breed') || '' }),
+      setSelectedBreed({ selectedBreed: searchParams.get('breed') }),
     );
   }, [searchParams]);
 
   return (
     <Container>
       <Row className="justify-content-md-center">
-        <Col>
-          <BreedSelect />
-        </Col>
+        <BreedSelect />
       </Row>
       <Row>
         <BreedList />
