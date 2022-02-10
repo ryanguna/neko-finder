@@ -1,10 +1,9 @@
 /**
  * Module Dependencies
  */
-import '@screens/app/style.scss';
+import Form from 'react-bootstrap/Form';
 
 import { IReactComponentWrapper } from '@/types/global';
-import Form from 'react-bootstrap/Form';
 
 interface IOption {
   value: string;
@@ -22,6 +21,9 @@ interface IUiFormSelect extends IReactComponentWrapper {
   'aria-label'?: string;
 }
 
+/**
+ * Custom Select extension based from bootstrap Form.Select
+ */
 function UiFormSelect(props: IUiFormSelect) {
   const { placeholder, defaultValue, ...other } = props;
 
@@ -35,7 +37,7 @@ function UiFormSelect(props: IUiFormSelect) {
 
       <Form.Select id={props.id || ''} {...other} value={defaultValue}>
         <option value="">{placeholder}</option>
-        {props.options.map((option: any, index: any) => (
+        {props.options.map((option: any, index: number) => (
           <option key={index} value={option.value}>
             {option.description}
           </option>

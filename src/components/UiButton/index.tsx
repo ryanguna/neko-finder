@@ -2,9 +2,9 @@
  * Module Dependencies
  */
 import '@components/UiButton/style.scss';
+import Button from 'react-bootstrap/Button';
 
 import { IReactComponentWrapper } from '@/types/global';
-import Button from 'react-bootstrap/Button';
 
 interface IUiButton extends IReactComponentWrapper {
   sharp?: boolean;
@@ -14,6 +14,9 @@ interface IUiButton extends IReactComponentWrapper {
   onClick?: any;
 }
 
+/**
+ * Custom button extension based from bootstrap Button
+ */
 function UiButton(props: IUiButton) {
   const { sharp, description, ...other } = props;
   return (

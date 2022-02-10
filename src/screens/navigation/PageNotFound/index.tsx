@@ -1,12 +1,13 @@
 /**
  * Module Dependencies
  */
-import '@screens/app/style.scss';
-
 import Container from 'react-bootstrap/Container';
 
-// TODO: Update the design of this page
+/**
+ * Displayed when user tries to access an invalid route.
+ */
 function PageNotFound() {
+  // TODO: Update the design of this page
   return (
     <>
       <Container>Page Not Found</Container>

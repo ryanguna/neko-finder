@@ -3,7 +3,11 @@
  */
 import { createSlice } from '@reduxjs/toolkit';
 
-// Creating slice, This method automatically create actionTypes and actionCreators
+/**
+ *
+ * Contains data of breedDetail and reducers
+ *
+ */
 const breedDetailSlice = createSlice({
   name: 'breedDetail',
   initialState: {
@@ -14,10 +18,18 @@ const breedDetailSlice = createSlice({
     getBreedDetailById: (state, action) => {
       state.isLoadingBreedDetails = true;
     },
+    /**
+     * Called by saga handler => breedDetailSaga@handleGetBreedDetailById
+     * on successful API request
+     */
     getBreedDetailByIdSuccess: (state, { payload, type }) => {
       state.data = payload;
       state.isLoadingBreedDetails = false;
     },
+    /**
+     * Called by saga handler => breedDetailSaga@handleGetBreedDetailById
+     * on failed API request
+     */
     getBreedDetailByFailed: (state) => {
       state.isLoadingBreedDetails = false;
     },

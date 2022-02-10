@@ -2,27 +2,37 @@
  * Module Dependencies
  */
 import '@screens/app.home/sections/BreedList/style.scss';
-import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { useEffect } from 'react';
-
-import { clearBreeds, getBreedsById } from '@store/entities/breeds/breedSlice';
-
-import * as React from 'react';
-
-import LoadingBreedState from '@screens/app.home/sections/BreedList/LoadingBreedState';
-import NoBreedFoundState from '@screens/app.home/sections/BreedList/NoBreedFoundState';
-import breedSelector from '@store/entities/breeds/breedSelector';
-import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
-
-import UiButton from '@components/UiButton';
 import _ from 'lodash';
+import React, { useEffect } from 'react';
+
 import { Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import { useNavigate } from 'react-router-dom';
+
+import UiButton from '@components/UiButton';
+
+import { clearBreeds, getBreedsById } from '@store/entities/breeds/breedSlice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+
+import LoadingBreedState from '@screens/app.home/sections/BreedList/LoadingBreedState';
+import NoBreedFoundState from '@screens/app.home/sections/BreedList/NoBreedFoundState';
+
+// Selectors
+import breedSelector from '@store/entities/breeds/breedSelector';
+import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
+
+/**
+ *
+ * Displays a list of cards based from the list of breeds
+ *
+ * @children [LoadingBreedState, NoBreedFoundState]
+ * @parent AppHome
+ *
+ */
 function BreedList() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -34,7 +44,7 @@ function BreedList() {
   const breeds = useAppSelector(breedSelector.getBreeds);
   const isLoading = useAppSelector(breedSelector.getFetchBreedsLoadingState);
 
-  // On load and currentSelectedBreedType changes calculate display
+  // On load and changes selectedBreed, calculate display
   useEffect(() => {
     if (_.isEmpty(selectedBreedType)) {
       dispatch(clearBreeds());

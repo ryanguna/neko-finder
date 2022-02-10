@@ -1,16 +1,19 @@
 /**
  * Module Dependencies
  */
+import _ from 'lodash';
+import { call, put, takeLatest } from 'redux-saga/effects';
+
 import { IAxiosResponse, ISagaActionParam } from '@/types/global';
+
 import breedDetailAPI from '@store/entities/breedDetail/breedDetailAPI';
+
 import {
   getBreedDetailByFailed,
   getBreedDetailById,
   getBreedDetailByIdSuccess,
 } from '@store/entities/breedDetail/breedDetailSlice';
 import { showGlobalError } from '@store/global/globalSlice';
-import _ from 'lodash';
-import { call, put, takeLatest } from 'redux-saga/effects';
 
 interface IPayload extends ISagaActionParam {
   payload: {
@@ -18,6 +21,14 @@ interface IPayload extends ISagaActionParam {
   };
 }
 
+/**
+ *
+ * Saga handler for getBreedDetailById
+ * Requests TheCatApi gateway to get the breedDetails
+ *
+ * @param action IPayload
+ *
+ */
 function* handleGetBreedDetailById(action: IPayload) {
   try {
     const response: IAxiosResponse = yield call(() =>

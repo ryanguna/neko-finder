@@ -3,7 +3,11 @@
  */
 import { createSlice } from '@reduxjs/toolkit';
 
-// Creating slice, This method automatically create actionTypes and actionCreators
+/**
+ *
+ * Contains global app store data. e.g. global error, global loader, etc.
+ *
+ */
 const globalSlice = createSlice({
   name: 'global',
   initialState: {

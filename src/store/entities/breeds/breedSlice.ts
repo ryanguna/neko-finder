@@ -4,7 +4,11 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
-// Creating slice, This method automatically create actionTypes and actionCreators
+/**
+ *
+ * Contains data of breeds and breed pagination
+ *
+ */
 const breedSlice = createSlice({
   name: 'breeds',
   initialState: {
@@ -22,6 +26,10 @@ const breedSlice = createSlice({
     getBreedsById: (state, action) => {
       state.isLoadingBreeds = true;
     },
+    /**
+     * Called by saga handler => breedSaga@handleGetBreedsById
+     * on successful API request
+     */
     getBreedsByIdSuccess: (state, { payload }) => {
       state.isLoadingBreeds = false;
       state.pagination.isPaginationButtonHidden = false;
@@ -33,6 +41,10 @@ const breedSlice = createSlice({
 
       state.data = _.get(payload, 'data', []);
     },
+    /**
+     * Called by saga handler => breedSaga@handleGetBreedsById
+     * on failed API request
+     */
     getBreedsByIdFailed: (state) => {
       state.isLoadingBreeds = false;
     },
@@ -40,6 +52,10 @@ const breedSlice = createSlice({
       state.pagination.currentPage++;
       state.pagination.isPaginationButtonLoading = true;
     },
+    /**
+     * Called by saga handler => breedSaga@handleGetPaginatedBreedsById
+     * on successful API request
+     */
     getPaginatedBreedsByIdSuccess: (state, { payload }) => {
       const currentState = current(state);
 
@@ -49,14 +65,20 @@ const breedSlice = createSlice({
 
       const paginationCount = _.get(headers, 'pagination-count');
 
+      // Get pagination-count from request headers to determine the pagination limit
       if (state.pagination.currentPage > paginationCount) {
         state.pagination.isPaginationButtonHidden = true;
       }
 
+      // Normalize store data from request data based on id
       state.data = _.values(
         _.merge(_.keyBy(currentState.data, 'id'), _.keyBy(data, 'id')),
       );
     },
+    /**
+     * Called by saga handler => breedSaga@handleGetPaginatedBreedsById
+     * on failed API request
+     */
     getPaginatedBreedsByIdFailed: (state) => {
       state.pagination.isPaginationButtonLoading = false;
     },

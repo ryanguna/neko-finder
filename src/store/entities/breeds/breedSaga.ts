@@ -1,4 +1,9 @@
-import { ISagaActionParam } from '@/types/global';
+/**
+ * Module Dependencies
+ */
+import { call, put, takeLatest } from 'redux-saga/effects';
+
+import { IAxiosResponse, ISagaActionParam } from '@/types/global';
 import breedAPI from '@store/entities/breeds/breedAPI';
 import {
   getBreedsById,
@@ -9,7 +14,6 @@ import {
   getPaginatedBreedsByIdSuccess,
 } from '@store/entities/breeds/breedSlice';
 import { showGlobalError } from '@store/global/globalSlice';
-import { call, put, takeLatest } from 'redux-saga/effects';
 
 interface IPayload extends ISagaActionParam {
   payload: {
@@ -18,10 +22,16 @@ interface IPayload extends ISagaActionParam {
   };
 }
 
+/**
+ *
+ * Saga handler for getBreedsById
+ *
+ * @param action IPayload
+ *
+ */
 function* handleGetBreedsById(action: IPayload) {
   try {
-    // @ts-ignore
-    const response = yield call(() =>
+    const response: IAxiosResponse = yield call(() =>
       breedAPI.requestBreedsById(action.payload.id, action.payload.currentPage),
     );
 
@@ -32,10 +42,16 @@ function* handleGetBreedsById(action: IPayload) {
   }
 }
 
+/**
+ *
+ * Saga handler for getPaginatedBreedsById
+ *
+ * @param action IPayload
+ *
+ */
 function* handleGetPaginatedBreedsById(action: IPayload) {
   try {
-    // @ts-ignore
-    const response = yield call(() =>
+    const response: IAxiosResponse = yield call(() =>
       breedAPI.requestBreedsById(action.payload.id, action.payload.currentPage),
     );
 

@@ -1,18 +1,25 @@
 /**
  * Module Dependencies
  */
-import UiFormSelect from '@components/UiFormSelect';
 import '@screens/app.home/sections/BreedSelect/style.scss';
+
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import UiFormSelect from '@components/UiFormSelect';
 import { getBreedTypes } from '@store/entities/breedTypes/breedTypeSlice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
 
+// Selectors
+import breedSelector from '@store/entities/breeds/breedSelector';
 import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
 
-import breedSelector from '@store/entities/breeds/breedSelector';
-import { useAppDispatch, useAppSelector } from '@store/hooks';
-import React, { useEffect } from 'react';
-
+/**
+ *
+ * Contains a Select element that updates the selectedBreed state
+ * @parent AppHome
+ *
+ */
 function BreedSelect() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
