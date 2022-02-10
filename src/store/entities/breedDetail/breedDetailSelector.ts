@@ -3,6 +3,6 @@
  */
 import { RootState } from '@store/store';
 
-export default {
+export const breedDetailSelector = {
   getBreedDetails: (state: RootState) => state.entities.breedDetail.data,
 };

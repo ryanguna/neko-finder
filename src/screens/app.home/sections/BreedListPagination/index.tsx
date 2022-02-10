@@ -11,8 +11,8 @@ import {
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 
 // Selectors
-import breedSelector from '@store/entities/breeds/breedSelector';
-import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
+import { breedSelector } from '@store/entities/breeds/breedSelector';
+import { breedTypeSelector } from '@store/entities/breedTypes/breedTypeSelector';
 
 /**
  *
@@ -33,7 +33,7 @@ function BreedListPagination() {
 
   useEffect(() => {
     dispatch(resetPagination());
-  }, [selectedBreedType]);
+  }, [selectedBreedType]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const doPagination = () => (event: React.MouseEvent) => {
     event.preventDefault();

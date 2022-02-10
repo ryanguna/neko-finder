@@ -5,7 +5,7 @@ import '@screens/app/style.scss';
 
 import Alert from 'react-bootstrap/Alert';
 
-import globalSelector from '@store/global/globalSelector';
+import { globalSelector } from '@store/global/globalSelector';
 import { resetGlobalError } from '@store/global/globalSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 

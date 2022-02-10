@@ -5,7 +5,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { IAxiosResponse } from '@/types/global';
 
-import breedTypeAPI from '@store/entities/breedTypes/breedTypeAPI';
+import { breedTypeAPI } from '@store/entities/breedTypes/breedTypeAPI';
 import {
   getBreedTypes,
   getBreedTypesFailed,

@@ -22,8 +22,8 @@ import LoadingBreedState from '@screens/app.home/sections/BreedList/LoadingBreed
 import NoBreedFoundState from '@screens/app.home/sections/BreedList/NoBreedFoundState';
 
 // Selectors
-import breedSelector from '@store/entities/breeds/breedSelector';
-import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
+import { breedSelector } from '@store/entities/breeds/breedSelector';
+import { breedTypeSelector } from '@store/entities/breedTypes/breedTypeSelector';
 
 /**
  *
@@ -56,7 +56,7 @@ function BreedList() {
         }),
       );
     }
-  }, [selectedBreedType]);
+  }, [selectedBreedType]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const goTo = (id: string) => (event: React.MouseEvent) => {
     event.preventDefault();
