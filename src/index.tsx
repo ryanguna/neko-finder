@@ -11,6 +11,7 @@ import AppHome from '@screens/app.home';
 
 import { store } from '@store/store';
 import { Provider } from 'react-redux';
+import PageNotFound from "@screens/navigation/PageNotFound";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<AppHome />} />
           <Route path="/breeds/:id" element={<AppBreedDetails />} />
+          <Route path="*" element={<PageNotFound />}/>
         </Routes>
       </App>
     </BrowserRouter>
