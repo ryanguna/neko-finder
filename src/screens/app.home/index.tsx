@@ -30,7 +30,7 @@ function AppHome() {
   // Check on page load and listen to queryParam=breed changes to update the selectedBreed
   useEffect(() => {
     dispatch(setSelectedBreed({ selectedBreed: searchParams.get('breed') }));
-  }, [searchParams]);
+  }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Container>
