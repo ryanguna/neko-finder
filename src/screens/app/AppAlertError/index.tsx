@@ -3,11 +3,15 @@
  */
 import '@screens/app/style.scss';
 
+import Alert from 'react-bootstrap/Alert';
+
 import globalSelector from '@store/global/globalSelector';
 import { resetGlobalError } from '@store/global/globalSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import Alert from 'react-bootstrap/Alert';
 
+/**
+ * Global app alert error message. Currently triggered by saga error handlers
+ */
 function AppAlertError() {
   const dispatch = useAppDispatch();
   const hasError = useAppSelector(globalSelector.getGlobalError);

@@ -4,7 +4,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
-// Creating slice, This method automatically create actionTypes and actionCreators
+/**
+ *
+ * Contains data of breedTypes
+ *
+ */
 const breedTypeSlice = createSlice({
   name: 'breedTypes',
   initialState: {
@@ -16,6 +20,10 @@ const breedTypeSlice = createSlice({
     getBreedTypes: (state) => {
       state.isLoadingBreedTypes = true;
     },
+    /**
+     * Called by saga handler => breedTypeSaga@handleGetBreedTypes
+     * on successful API request
+     */
     getBreedTypesSuccess: (state: any, action) => {
       state.data = action.payload.map((data: any) => ({
         value: data.id,
@@ -23,6 +31,10 @@ const breedTypeSlice = createSlice({
       }));
       state.isLoadingBreedTypes = false;
     },
+    /**
+     * Called by saga handler => breedTypeSaga@handleGetBreedTypes
+     * on failed API request
+     */
     getBreedTypesFailed: (state) => {
       state.isLoadingBreedTypes = false;
     },

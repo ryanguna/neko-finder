@@ -3,19 +3,26 @@
  */
 import { call, put, takeLatest } from 'redux-saga/effects';
 
+import { IAxiosResponse } from '@/types/global';
+
 import breedTypeAPI from '@store/entities/breedTypes/breedTypeAPI';
 import {
   getBreedTypes,
   getBreedTypesFailed,
   getBreedTypesSuccess,
 } from '@store/entities/breedTypes/breedTypeSlice';
-
 import { showGlobalError } from '@store/global/globalSlice';
 
+/**
+ *
+ * Saga handler for getBreedTypes
+ *
+ */
 function* handleGetBreedTypes() {
   try {
-    // @ts-ignore
-    const response = yield call(() => breedTypeAPI.requestAllBreedTypes());
+    const response: IAxiosResponse = yield call(() =>
+      breedTypeAPI.requestAllBreedTypes(),
+    );
     yield put(getBreedTypesSuccess(response.data));
   } catch (e) {
     yield put(getBreedTypesFailed());

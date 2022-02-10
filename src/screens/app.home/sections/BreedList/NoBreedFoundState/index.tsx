@@ -1,9 +1,13 @@
 /**
  * Module Dependencies
  */
-import '@screens/app.home/sections/BreedList/NoBreedFoundState/style.scss';
 import Figure from 'react-bootstrap/Figure';
 
+/**
+ * Empty State. Displayed when there are no breeds on the store.
+ * @parent BreedList
+ *
+ */
 function NoBreedFoundState() {
   return (
     <>

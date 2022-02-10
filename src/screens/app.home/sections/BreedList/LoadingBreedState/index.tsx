@@ -1,9 +1,14 @@
 /**
  * Module Dependencies
  */
-import '@screens/app.home/sections/BreedList/LoadingBreedState/style.scss';
 import Spinner from 'react-bootstrap/Spinner';
 
+/**
+ * Loading State. Displayed when the app is fetching the list of breeds.
+ *
+ * @parent BreedList
+ *
+ */
 function LoadingBreedState() {
   return (
     <>

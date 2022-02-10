@@ -3,21 +3,31 @@
  */
 import '@screens/app.breed-details/style.scss';
 
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Row from 'react-bootstrap/Row';
+
+import UiButton from '@components/UiButton';
 
 import { getBreedDetailById } from '@store/entities/breedDetail/breedDetailSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { useEffect } from 'react';
 
-import UiButton from '@components/UiButton';
+// Selectors
 import breedDetailSelector from '@store/entities/breedDetail/breedDetailSelector';
 
-import Col from 'react-bootstrap/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Row from 'react-bootstrap/Row';
-import { useNavigate, useParams } from 'react-router-dom';
-
+/**
+ *
+ * Displays details of a selected breed.
+ * [ name, origin, temperament, description, image ]
+ *
+ * Accessible by /breeds/{id} route
+ *
+ */
 function AppBreedDetails() {
   const navigate = useNavigate();
   const pathParams = useParams();
