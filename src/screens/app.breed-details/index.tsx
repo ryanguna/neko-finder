@@ -18,7 +18,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Row from 'react-bootstrap/Row';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function AppCatDetails() {
+function AppBreedDetails() {
   const navigate = useNavigate();
   const pathParams = useParams();
 
@@ -61,6 +61,7 @@ function AppCatDetails() {
                 {listItems.map((listItem, index) => (
                   <ListGroup.Item
                     as="li"
+                    key={index}
                     className="d-flex justify-content-between align-items-start"
                   >
                     <div className="ms-2 me-auto">
@@ -78,4 +79,4 @@ function AppCatDetails() {
   );
 }
 
-export default AppCatDetails;
+export default AppBreedDetails;

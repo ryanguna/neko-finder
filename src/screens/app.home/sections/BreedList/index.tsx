@@ -16,9 +16,9 @@ import NoBreedFoundState from '@screens/app.home/sections/BreedList/NoBreedFound
 import breedSelector from '@store/entities/breeds/breedSelector';
 import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
 
+import UiButton from '@components/UiButton';
 import _ from 'lodash';
 import { Container } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -70,13 +70,13 @@ function BreedList() {
                   />
                   <Card.Body>
                     <div className="d-grid gap-1">
-                      <Button
+                      <UiButton
+                        sharp={true}
                         variant="outline-secondary"
-                        className="btn-sharp"
                         onClick={goTo(breed.id)}
                       >
                         View details
-                      </Button>
+                      </UiButton>
                     </div>
                   </Card.Body>
                 </Card>
