@@ -1,9 +1,8 @@
 /**
  * Module Dependencies
  */
-import '@screens/app/style.scss';
+import '@screens/app.breed-details/style.scss';
 
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 
@@ -11,11 +10,15 @@ import { getBreedDetailById } from '@store/entities/breedDetail/breedDetailSlice
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { useEffect } from 'react';
 
+import UiButton from '@components/UiButton';
 import breedDetailSelector from '@store/entities/breedDetail/breedDetailSelector';
 
+import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Row from 'react-bootstrap/Row';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function AppCatDetails() {
+function AppBreedDetails() {
   const navigate = useNavigate();
   const pathParams = useParams();
 
@@ -26,31 +29,54 @@ function AppCatDetails() {
     dispatch(getBreedDetailById({ id: pathParams.id }));
   }, [dispatch]);
 
-  const goBack = () => navigate(-1);
+  function goBack(): void {
+    navigate(-1);
+  }
+
+  const listItems = [
+    { name: 'Breed', value: breedDetail.name },
+    { name: 'Origin', value: breedDetail.origin },
+    { name: 'Temperament', value: breedDetail.temperament },
+    { name: 'Description', value: breedDetail.description },
+  ];
 
   return (
-    <Container>
-      <Card className="text-center">
-        <Card.Header>
-          <Card.Img
-            height="600"
-            width="50"
-            variant="top"
-            src={breedDetail.url}
-          />
-        </Card.Header>
-        <Card.Body>
-          <Card.Title>{breedDetail.name}</Card.Title>
-          <Card.Text>Origin: {breedDetail.origin}</Card.Text>
-          <Card.Text>{breedDetail.temperament}</Card.Text>
-          <Card.Text>{breedDetail.description}</Card.Text>
-          <Button variant="primary" onClick={goBack}>
-            Go back
-          </Button>
-        </Card.Body>
-      </Card>
+    <Container className="app-breed-detail-container">
+      <Row className="justify-content-md-center">
+        <Col sm={6} xs={12}>
+          <Card>
+            <Card.Header as="h5">
+              <UiButton sharp={true} variant="secondary" onClick={goBack}>
+                Back
+              </UiButton>
+            </Card.Header>
+
+            <Card.Body>
+              <Card.Img
+                className="img-breed-detail-logo"
+                variant="top"
+                src={breedDetail.url}
+              />
+              <ListGroup as="ol">
+                {listItems.map((listItem, index) => (
+                  <ListGroup.Item
+                    as="li"
+                    key={index}
+                    className="d-flex justify-content-between align-items-start"
+                  >
+                    <div className="ms-2 me-auto">
+                      <div className="fw-bold">{listItem.name}</div>
+                      {listItem.value}
+                    </div>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 }
 
-export default AppCatDetails;
+export default AppBreedDetails;

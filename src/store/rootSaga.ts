@@ -17,7 +17,7 @@ export default function* rootSaga() {
             yield saga;
             break;
           } catch (e) {
-            // Handle error
+            // TODO: Log and handle exceptions
           }
         }
       }),

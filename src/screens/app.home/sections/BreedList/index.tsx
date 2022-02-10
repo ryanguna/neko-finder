@@ -1,7 +1,7 @@
 /**
  * Module Dependencies
  */
-import '@screens/app/style.scss';
+import '@screens/app.home/sections/BreedList/style.scss';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@store/hooks';
@@ -11,12 +11,17 @@ import { clearBreeds, getBreedsById } from '@store/entities/breeds/breedSlice';
 
 import * as React from 'react';
 
+import LoadingBreedState from '@screens/app.home/sections/BreedList/LoadingBreedState';
+import NoBreedFoundState from '@screens/app.home/sections/BreedList/NoBreedFoundState';
 import breedSelector from '@store/entities/breeds/breedSelector';
 import breedTypeSelector from '@store/entities/breedTypes/breedTypeSelector';
 
+import UiButton from '@components/UiButton';
 import _ from 'lodash';
-import Button from 'react-bootstrap/Button';
+import { Container } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 function BreedList() {
   const navigate = useNavigate();
@@ -27,6 +32,7 @@ function BreedList() {
   );
   const { currentPage } = useAppSelector(breedSelector.getBreedPagination);
   const breeds = useAppSelector(breedSelector.getBreeds);
+  const isLoading = useAppSelector(breedSelector.getFetchBreedsLoadingState);
 
   // On load and currentSelectedBreedType changes calculate display
   useEffect(() => {
@@ -42,29 +48,47 @@ function BreedList() {
     }
   }, [selectedBreedType]);
 
-  const goTo = (id: any) => (event: React.MouseEvent) => {
+  const goTo = (id: string) => (event: React.MouseEvent) => {
     event.preventDefault();
     navigate(`/breeds/${id}`);
   };
 
   return (
     <>
-      {breeds.length > 0 ? (
-        breeds.map((breed: any) => (
-          <Card key={breed.id}>
-            <Card.Img variant="top" src={breed.url} />
-            <Card.Body>
-              <Card.Title>Test</Card.Title>
-              <Card.Text>{breed.id}</Card.Text>
-              <Button variant="primary" onClick={goTo(breed.id)}>
-                View details
-              </Button>
-            </Card.Body>
-          </Card>
-        ))
-      ) : (
-        <div>No cats found</div>
-      )}
+      <Container>
+        <Row xs={1} sm={2} md={4} className="justify-content-md-center">
+          {isLoading ? (
+            <LoadingBreedState />
+          ) : breeds.length > 0 ? (
+            breeds.map((breed: any) => (
+              <Col key={breed.id}>
+                <Card className="breed-list-card">
+                  <Card.Img
+                    variant="top"
+                    className="img-breed-logo"
+                    src={breed.url}
+                  />
+                  <Card.Body>
+                    <div className="d-grid gap-1">
+                      <UiButton
+                        sharp={true}
+                        variant="outline-secondary"
+                        onClick={goTo(breed.id)}
+                      >
+                        View details
+                      </UiButton>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))
+          ) : (
+            <>
+              <NoBreedFoundState />
+            </>
+          )}
+        </Row>
+      </Container>
     </>
   );
 }

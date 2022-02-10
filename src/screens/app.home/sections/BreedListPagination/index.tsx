@@ -46,11 +46,12 @@ function BreedListPagination() {
         ''
       ) : (
         <Button
+          className="btn-sharp"
           disabled={isPaginationButtonLoading}
-          variant="success"
+          variant="secondary"
           onClick={doPagination()}
         >
-          Load more
+          Load more cats
         </Button>
       )}
     </>

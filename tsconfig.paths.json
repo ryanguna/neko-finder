@@ -5,6 +5,7 @@
       "@/*": ["./src/*"],
       "@screens/*": ["./src/screens/*"],
       "@components/*": ["./src/components/*"],
+      "@types/*": ["./src/types/*"],
       "@config": ["./src/config"],
       "@assets/*": ["./src/assets/*"],
       "@store/*": ["./src/store/*"],
